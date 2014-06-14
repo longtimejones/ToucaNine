@@ -1,4 +1,6 @@
 ToucaNine
 =========
 
-A very simple, yet flexible, PHP5 HMVC-alike framework approach
+A very simple, yet flexible, PHP5 HMVC-alike framework approach.
+
+*The framework is provided **"as is"** for inspiration purposes only, and is not intended for use in production environment.*

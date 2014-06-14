@@ -1,0 +1,22 @@
+ErrorDocument 400 /index.php/errors/400/
+ErrorDocument 401 /index.php/errors/401/
+ErrorDocument 403 /index.php/errors/403/
+ErrorDocument 404 /index.php/errors/404/
+ErrorDocument 500 /index.php/errors/500/
+
+<IfModule mod_rewrite.c>
+
+    # Start engine
+    RewriteEngine on
+
+    # Avoid request for index.php
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php(/?([^/]+)*)\ HTTP/
+    RewriteRule ^index\.php(/?([^/]+)*)$ /index.php/errors/404 [PT,L]
+
+    # Remove index.php from request
+    RewriteRule ^$ /index.php/ [PT]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.+)/$ /index.php/$1 [PT,L]
+
+</IfModule>
