@@ -3,7 +3,7 @@
     "type": "project",
     "keywords": ["framework"],
     "description": "A very simple, yet flexible, PHP5 HMVC-alike micro framework.",
-    "homepage": "http://tim.olesen.be/toucanine/",
+    "homepage": "http://tim.olesen.be/toucanine-php5-framework/",
     "license": "MIT",
     "authors": [
         {
