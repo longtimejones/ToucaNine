@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Debugging</title>
+        <style type="text/css">
+            body {
+                color: #333;
+                font: .8em Consolas, monospace;
+                margin: 0;
+                padding: 1em 2em;
+            }
+            code {
+                border-left: 2px solid #b22222;
+                font: 1em Consolas, monospace;
+                padding-left: 1em;
+            }
+            code * {
+                color: #b22222 !important;
+            }
+        </style>
+    </head>
+    <body>
+        <h1><?php echo $heading; ?></h1>
+        <p><em><?php echo $message; ?></em></p>
+        <p>Raised in file <strong><?php echo $file; ?></strong> at line <strong><?php echo $line; ?></strong></p>
+        <?php echo $script; ?>
+    </body>
+</html>

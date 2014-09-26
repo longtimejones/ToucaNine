@@ -1,0 +1,27 @@
+{
+    "name": "longtimejones/toucanine",
+    "type": "project",
+    "keywords": ["framework"],
+    "description": "A very simple, yet flexible, PHP5 HMVC-alike micro framework.",
+    "homepage": "http://tim.olesen.be/toucanine/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tim Jong Olesen",
+            "email": "tim@olesen.be"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "ezyang/htmlpurifier": "dev-master",
+        "illuminate/database": "~4.2",
+        "nette/http": "~2.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "ToucaNine\\": "src/ToucaNine/"
+        }
+    },
+    "minimum-stability": "dev"
+}

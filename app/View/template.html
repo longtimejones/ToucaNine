@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="ToucaNine is a very simple, yet flexible PHP5 HMVC-alike micro framework.">
+        <title>A very simple, yet flexible PHP5 HMVC-alike micro framework - ToucaNine</title>
+        <link rel="stylesheet" href="/assets/css/style.min.css">
+    </head>
+    <body>
+        <div id="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>ToucaNine</h1>
+                        <h3>A very simple, yet flexible,<br>PHP5 HMVC-alike micro framework.</h3>
+                        <h5><a href="http://tim.olesen.be/toucanine-php5-framework/" title="Learn more about HTML Purifier" target="_blank" class="btn btn-theme">Learn more</a></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <div id="welcome">
+             <div class="container">
+                 <div class="row centered">
+                    <h2><?php echo $page_title; ?></h2>
+                 </div>
+                 <div class="row centered">
+                    <p><?php echo $page_content; ?></p>
+                 </div>
+                 <div class="row centered">
+                    <div class="col-lg-3">
+                        <a href="/" class="btn btn-theme">Welcome demo page</a>
+                    </div>
+                    <div class="col-lg-3">
+                        <a href="/hello-world" class="btn btn-theme">Hello world demo page</a>
+                    </div>
+                    <div class="col-lg-3">
+                        <a href="/hello-guest/foo" class="btn btn-theme">Hello guest demo page</a>
+                    </div>
+                    <div class="col-lg-3">
+                        <a href="/hello-user/ToucaNine" class="btn btn-theme">Hello user demo page</a>
+                    </div>
+                 </div>
+                 <div class="row centered">
+                    <p><?php echo $app_profiling; ?></p>
+                 </div>
+             </div>
+         </div>
+    </body>
+</html>
