@@ -61,11 +61,6 @@ define('TOUCANINE_SET_TIME', microtime(true));
 require PRO_PATH . DS . 'vendor' . DS . 'autoload.php';
 
 /**
- * Application configuration
- */
-include APP_PATH . DS . 'Config' . EXT;
-
-/**
  * Dependency injection
  */
 $dependency = new Dependency(array(
@@ -78,17 +73,6 @@ $dependency = new Dependency(array(
     'ModelInterface'       => 'ToucaNine\Model\Model',
     'ViewInterface'        => 'ToucaNine\View\View',
 ));
-
-/*
-$requestFactory = new \Nette\Http\RequestFactory;
-$foo = $requestFactory->createHttpRequest();
-
-echo '<pre>';
-var_dump($foo);
-echo '</pre>';
-
-exit;
-*/
 
 /**
  * Dependency container
@@ -126,7 +110,12 @@ Exception\ErrorException::setHttp($container->get('ToucaNine\Http\Http'));
 Exception\ErrorException::setView($container->get('ToucaNine\View\View'));
 
 /**
- * Application
+ * Application configuration
+ */
+include APP_PATH . DS . 'Config' . EXT;
+
+/**
+ * Application execution
  */
 $app = $container->get('ToucaNine\Application\Application');
 

@@ -178,20 +178,11 @@ final class Application implements ApplicationInterface
             if (preg_match($pattern, $subject, $args) !== false && $args[0] !== null) {
 
                 /**
-                 * Sanitize input
+                 * Sanitize URL path
                  */
                 $args = array_map('trim', $args);
                 $args = array_map('urldecode', $args);
-                $args = filter_var_array($args, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
-
-                /**
-                 * Grab the matches (segments)
-                 *
-                 * Deprecated?
-                 *
-                $this->http->setUriSegments(array_slice($args, 1, count($args), true));
-                /**
-                 */
+                $args = filter_var_array($args, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_HIGH);
 
                 /**
                  * Requesting controller method
@@ -219,13 +210,24 @@ final class Application implements ApplicationInterface
                     /**
                      * Bind anonymous function, closure
                      */
-                    #$route['func']($this);
                     $closure = \Closure::bind($route['func'], null, $this);
 
-                    /**
-                     * Call anonymous function, closure
-                     */
-                    $closure();
+                    if (count($args) > 1) {
+
+                        /**
+                         * Call anonymous function, closure, with arguments
+                         */
+                        call_user_func_array($closure, array_slice($args, 1));
+
+                    } else {
+
+                        /**
+                         * Call anonymous function, closure, without arguments
+                         */
+                        $closure();
+
+                    }
+
                     break;
 
                 /**

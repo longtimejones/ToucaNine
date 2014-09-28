@@ -47,7 +47,7 @@ $machines = array(
     /**
      * Test machine
      */
-    't_machine_name'  => array(
+    'htpc'  => array(
         'debug'       => true,
         'env'         => 'test',
         'reporting'   => E_ALL ^ E_DEPRECATED ^ E_NOTICE | E_STRICT,
@@ -118,9 +118,9 @@ $db = array(
     'test' => array(
         'driver'    => 'mysql',
         'host'      => 'localhost',
-        'database'  => 'database',
+        'database'  => 'dummy',
         'username'  => 'root',
-        'password'  => 'password',
+        'password'  => 'test',
         'charset'   => 'utf8',
         'collation' => 'utf8_unicode_ci',
         'prefix'    => '',

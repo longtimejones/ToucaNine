@@ -1,7 +1,7 @@
 {
     "name": "longtimejones/toucanine",
     "type": "project",
-    "keywords": ["framework"],
+    "keywords": ["framework", "hmvc"],
     "description": "A very simple, yet flexible, PHP5 HMVC-alike micro framework.",
     "homepage": "http://tim.olesen.be/toucanine-php5-framework/",
     "license": "MIT",
