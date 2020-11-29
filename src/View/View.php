@@ -8,10 +8,10 @@ namespace ToucaNine\View;
  * @subpackage Library
  * @category   View
  *
- * @author     Tim Jong Olesen <tim@olesen.be>
- * @copyright  Copyright (c) 2014, Tim Jong Olesen
- * @link       http://tim.olesen.be/toucanine/
- * @license    http://tim.olesen.be/toucanine/license/
+ * @author     Tim Jong Olesen <longtimejones@protonmail.com>
+ * @copyright  Copyright (c) 2020, Tim Jong Olesen
+ * @link       https://github.com/longtimejones/toucanine/
+ * @license    https://github.com/longtimejones/toucanine/blob/master/LICENSE
  */
 final class View implements ViewInterface
 {
@@ -21,7 +21,7 @@ final class View implements ViewInterface
      * @var array
      */
     private $_stack = array();
-    
+
     /**
      * Tidy configuration
      *
@@ -43,7 +43,7 @@ final class View implements ViewInterface
         'tidy-mark'           => false,
         'wrap'                => 0,
     );
-    
+
     /**
      * Assigns data to template
      *
@@ -58,7 +58,7 @@ final class View implements ViewInterface
     {
         $this->_stack[$key] = $var;
     }
-    
+
     /**
      * Renders template
      *
@@ -79,17 +79,17 @@ final class View implements ViewInterface
         foreach (array($data, $this->_stack) as $vars)
             if (empty($vars) === false)
                 extract($vars, EXTR_SKIP);
-                
+
         /**
          * Start output buffer
          */
         ob_start();
-        
+
         /**
          * Include the template
          */
         include TPL_PATH . DS . $template;
-        
+
         /**
          * Return output buffer
          */
@@ -98,7 +98,7 @@ final class View implements ViewInterface
                 return tidy_repair_string(ob_get_clean(), $this->_tidy_config, 'utf8');
             return ob_get_clean();
         }
-        
+
         /**
          * Flush output buffer
          */

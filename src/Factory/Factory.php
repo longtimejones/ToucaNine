@@ -9,10 +9,10 @@ use ToucaNine\IoC\Container;
  * @subpackage Library
  * @category   Factory
  *
- * @author     Tim Jong Olesen <tim@olesen.be>
- * @copyright  Copyright (c) 2014, Tim Jong Olesen
- * @link       http://tim.olesen.be/toucanine/
- * @license    http://tim.olesen.be/toucanine/license/
+ * @author     Tim Jong Olesen <longtimejones@protonmail.com>
+ * @copyright  Copyright (c) 2020, Tim Jong Olesen
+ * @link       https://github.com/longtimejones/toucanine/
+ * @license    https://github.com/longtimejones/toucanine/blob/master/LICENSE
  */
 final class Factory implements FactoryInterface
 {

@@ -6,131 +6,152 @@
  * @subpackage Application
  * @category   Configuration
  *
- * @author     Tim Jong Olesen <tim@olesen.be>
- * @copyright  Copyright (c) 2014, Tim Jong Olesen
- * @link       http://tim.olesen.be/toucanine/
- * @license    http://tim.olesen.be/toucanine/license/
+ * @author     Tim Jong Olesen <longtimejones@protonmail.com>
+ * @copyright  Copyright (c) 2020, Tim Jong Olesen
+ * @link       https://github.com/longtimejones/toucanine/
+ * @license    https://github.com/longtimejones/toucanine/blob/master/LICENSE
  */
 
 /**
- * Default timezone
+ * Environment configurations
  */
-date_default_timezone_set('Europe/Copenhagen');
+$environments = array(
 
-/**
- * Locale information
- */
-setlocale(LC_ALL, 'da_DK.utf8');
-
-/**
- * Local machines
- */
-$machines = array(
     /**
-     * Production machine
+     * Development environment
      */
-    'p_machine_name'  => array(
-        'debug'       => false,
-        'env'         => 'prod',
-        'reporting'   => 0,
-        'tidy_repair' => false,
+    'dev'   => array(
+        'app' => array(
+            'driver'      => '',
+            'host'        => '',
+            'database'    => '',
+            'username'    => '',
+            'password'    => '',
+            'charset'     => '',
+            'collation'   => '',
+            'prefix'      => '',
+        ),
+        'env' => array(
+            'debug'       => true,
+            'locale'      => '',
+            'reporting'   => E_ALL ^ E_DEPRECATED ^ E_NOTICE | E_STRICT,
+            'tidy_repair' => false,
+            'timezone'    => '',
+        ),
     ),
+
     /**
-     * Stage machine
+     * Testing environment
      */
-    's_machine_name'  => array(
-        'debug'       => false,
-        'env'         => 'stage',
-        'reporting'   => 0,
-        'tidy_repair' => false,
+    'test'  => array(
+        'app' => array(
+            'driver'      => '',
+            'host'        => '',
+            'database'    => '',
+            'username'    => '',
+            'password'    => '',
+            'charset'     => '',
+            'collation'   => '',
+            'prefix'      => '',
+        ),
+        'env' => array(
+            'debug'       => true,
+            'locale'      => '',
+            'reporting'   => E_ALL ^ E_DEPRECATED ^ E_NOTICE | E_STRICT,
+            'tidy_repair' => false,
+            'timezone'    => '',
+        ),
     ),
+
     /**
-     * Test machine
+     * Stage environment
      */
-    'htpc'  => array(
-        'debug'       => true,
-        'env'         => 'test',
-        'reporting'   => E_ALL ^ E_DEPRECATED ^ E_NOTICE | E_STRICT,
-        'tidy_repair' => false,
-    ),
-);
-
-/**
- * Local host name
- */
-$local_host_name = gethostname();
-
-if ($local_host_name === false)
-    throw new \UnexpectedValueException('Cannot retrieve local host name for environment settings!');
-
-/**
- * Current machine
- */
-if (!isset($machines[$local_host_name]))
-    throw new \OutOfBoundsException('Undetectable local machine. Please check the configuration file!');
-
-/**
- * Current machine
- */
-$local_machine = $machines[$local_host_name];
-
-/**
- * Environment mode
- */
-define('ENV', $local_machine['env']);
-
-/**
- * Debugging state
- */
-define('DEBUG', $local_machine['debug']);
-
-/**
- * Error reporting level
- */
-error_reporting($local_machine['reporting']);
-
-/**
- * Database configuration
- *
- * Support for MySQL, Postgres, SQL Server and SQLite
- */
-$db = array(
-    'prod' => array(
-        'driver'    => 'mysql',
-        'host'      => 'localhost',
-        'database'  => 'database',
-        'username'  => 'root',
-        'password'  => 'password',
-        'charset'   => 'utf8',
-        'collation' => 'utf8_unicode_ci',
-        'prefix'    => '',
-    ),
     'stage' => array(
-        'driver'    => 'mysql',
-        'host'      => 'localhost',
-        'database'  => 'database',
-        'username'  => 'root',
-        'password'  => 'password',
-        'charset'   => 'utf8',
-        'collation' => 'utf8_unicode_ci',
-        'prefix'    => '',
+        'app' => array(
+            'driver'      => '',
+            'host'        => '',
+            'database'    => '',
+            'username'    => '',
+            'password'    => '',
+            'charset'     => '',
+            'collation'   => '',
+            'prefix'      => '',
+        ),
+        'env' => array(
+            'debug'       => false,
+            'locale'      => '',
+            'reporting'   => 0,
+            'tidy_repair' => false,
+            'timezone'    => '',
+        ),
     ),
-    'test' => array(
-        'driver'    => 'mysql',
-        'host'      => 'localhost',
-        'database'  => 'dummy',
-        'username'  => 'root',
-        'password'  => 'test',
-        'charset'   => 'utf8',
-        'collation' => 'utf8_unicode_ci',
-        'prefix'    => '',
+
+    /**
+     * Production environment
+     */
+    'prod'  => array(
+        'app' => array(
+            'driver'      => '',
+            'host'        => '',
+            'database'    => '',
+            'username'    => '',
+            'password'    => '',
+            'charset'     => '',
+            'collation'   => '',
+            'prefix'      => '',
+        ),
+        'env' => array(
+            'debug'       => false,
+            'locale'      => '',
+            'reporting'   => 0,
+            'tidy_repair' => false,
+            'timezone'    => '',
+        ),
     ),
 );
 
 /**
- * Illuminate Database
+ * Application environment
  */
-if (isset($db[ENV])) {
+$app_env = 'prod';
+if (getenv('APP_ENV') !== false)
+    $app_env = getenv('APP_ENV');
+elseif (getenv('REDIRECT_APP_ENV') !== false)
+    $app_env = getenv('REDIRECT_APP_ENV');
+define('APP_ENV', $app_env);
+
+/**
+ * Current environment not found
+ */
+if (isset($environments[APP_ENV]) === false)
+    throw new \OutOfBoundsException('Undetectable environment. Please check the configuration file!');
+
+/**
+ * Set default timezone
+ */
+if (empty($environments[APP_ENV]['env']['timezone']) === false)
+    date_default_timezone_set('Europe/Copenhagen');
+
+/**
+ * Set locale information
+ */
+if (empty($environments[APP_ENV]['env']['locale']) === false)
+    setlocale(LC_ALL, 'da_DK.utf8');
+
+/**
+ * Set debugging mode
+ */
+define('APP_DEBUG', $environments[APP_ENV]['env']['debug']);
+
+/**
+ * Set error reporting level
+ */
+error_reporting($environments[APP_ENV]['env']['reporting']);
+
+/**
+ * Illuminate Database supports MySQL, Postgres, SQL Server, and SQLite
+ */
+if (isset($environments[APP_ENV])) {
 
     /**
      * Capsule manager providing expressive query builder, ActiveRecord style ORM and schema builder
@@ -141,14 +162,14 @@ if (isset($db[ENV])) {
      * Connection for Capsule manager
      */
     $capsule->addConnection([
-        'driver'    => $db[ENV]['driver'],
-        'host'      => $db[ENV]['host'],
-        'database'  => $db[ENV]['database'],
-        'username'  => $db[ENV]['username'],
-        'password'  => $db[ENV]['password'],
-        'charset'   => $db[ENV]['charset'],
-        'collation' => $db[ENV]['collation'],
-        'prefix'    => $db[ENV]['prefix'],
+        'driver'    => $environments[APP_ENV]['app']['driver'],
+        'host'      => $environments[APP_ENV]['app']['host'],
+        'database'  => $environments[APP_ENV]['app']['database'],
+        'username'  => $environments[APP_ENV]['app']['username'],
+        'password'  => $environments[APP_ENV]['app']['password'],
+        'charset'   => $environments[APP_ENV]['app']['charset'],
+        'collation' => $environments[APP_ENV]['app']['collation'],
+        'prefix'    => $environments[APP_ENV]['app']['prefix'],
     ]);
 
     /**
@@ -162,7 +183,7 @@ if (isset($db[ENV])) {
  * HTML Purifier configuration
  */
 define('HTML_PURIFIER_CONFIG', json_encode(array(
-    'Cache.SerializerPath' => SRC_PATH . '/Cache',
+    'Cache.SerializerPath' => APP_PATH . '/Cache',
     'Core.Encoding'        => 'UTF-8',
     'HTML.Doctype'         => 'HTML 4.01 Strict',
 )));

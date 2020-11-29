@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/../src/ToucaNine/Bootstrapper.php';
+require __DIR__ . '/../src/Bootstrapper.php';
 
 /**
  * Set route, default

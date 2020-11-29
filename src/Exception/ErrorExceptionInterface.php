@@ -5,8 +5,8 @@ use ToucaNine\Http\HttpInterface, ToucaNine\View\ViewInterface;
 /**
  * Description
  *
- * @author     Tim Jong Olesen <tim@olesen.be>
- * @copyright  Copyright (c) 2014, Tim Jong Olesen
+ * @author     Tim Jong Olesen <longtimejones@protonmail.com>
+ * @copyright  Copyright (c) 2020, Tim Jong Olesen
  */
 interface ErrorExceptionInterface
 {
