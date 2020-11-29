@@ -3,7 +3,7 @@
 
 A very simple, yet flexible, PHP5 HMVC-alike micro framework.
 
-***Notice:** the source has been revised nearly 6 years after release of v1.1.1. The framework was and is intended as a mock-up for OOP learning. PHP has progressed and matured a lot since v5.4. Many of the techniques used in the framework are now obsoleted.*
+***Notice:** the source has been revised nearly 6 years after release of v1.1.1. The framework was and is intended as a mock-up for OOP learning. PHP has progressed and matured a lot since v5.4. Many of the techniques used in the framework are now obsoleted in PHP v7.4.*
 
 ### Components
 ToucaNine framework comes packed with Nette HTTP Component, Illuminate Database, and HTML Purifier.
@@ -79,5 +79,3 @@ $app->route('POST /example/id/([^/]+)', function () use ($app) {
     ...
 });
 ```
-
-For further usage instructions, check out the [homepage for the ToucaNine framework](http://tim.olesen.be/toucanine-php5-framework/).
